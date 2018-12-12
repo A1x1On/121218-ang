@@ -1,0 +1,26 @@
+<toaster-container [toasterconfig]="app.config.toaster"></toaster-container>
+<header>
+
+  <div class="container main-menu" *ngIf="app.session">
+    <div class="row">
+      <div class="col-3">
+        <a routerLink="/transactions" routerLinkActive="active" class="nav-link text-faint">Transactions</a>
+      </div>
+
+      <div class="col-3">
+        <a routerLink="/profile" routerLinkActive="active" class="nav-link">Profile</a>
+      </div>
+
+      <div class="col-6">
+        <a (click)="logout()" class="nav-link mm-logout">Log Out</a>
+      </div>
+    </div>
+  </div>
+
+</header>
+
+<main role="main" class="container">
+  <router-outlet></router-outlet>
+</main>
+
+<footer></footer>

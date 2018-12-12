@@ -1,0 +1,87 @@
+<div class="position-relative">
+  <div class="flux-container title w-100">
+    <h3>List of logged user transactions</h3>
+    <hr><br>
+  </div>
+
+  <div class="flux-container transactions" [ngBusy]="busyTransactions">
+
+    <div class="row">
+      <div class="col-4">
+        Total: {{transactions.length}} rows
+      </div>
+      <div class="col-8">
+        <button type="button" (click)="openCreation()" class="btn btn-success float-right">Create Transaction</button>
+      </div>
+    </div>
+
+    <div class="row" *ngIf="transactions.length">
+      <div class="col-2">Id</div>
+      <div class="col-3">Date</div>
+      <div class="col-3">Username</div>
+      <div class="col-2">Amount</div>
+      <div class="col-2">Balance</div>
+    </div>
+    <div class="row" *ngFor="let t of transactions">
+      <div class="col-2">{{t.id}}</div>
+      <div class="col-3">{{t.date}}</div>
+      <div class="col-3">{{t.username}}</div>
+      <div class="col-2">{{t.amount}}</div>
+      <div class="col-2">{{t.balance}}</div>
+    </div>
+  </div>
+</div>
+
+<!-- Coupon -->
+<div bsModal
+     #createModal   = "bs-modal"
+     class          = "modal fade"
+     tabindex       = "-1"
+     role           = "dialog"
+     aria-labelledby= "dialog-transaction">
+  <div class="modal-dialog modal-md">
+    <div class="modal-content position-relative">
+      <div class="modal-header" [ngBusy]="busyCreation">
+        <h4 id="dialog-coupon" class="modal-title pull-left">Create a transaction</h4>
+        <button type="button" class="close pull-right" aria-label="Close" (click)="createModal.hide()">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body">
+        <div class="am-center-block">
+
+          <form class="tav-form">
+
+            <div class="form-group">
+              <label for="transactName">Name*</label>
+              <input type                 = "text"
+                     [(ngModel)]          = "transactParams.name"
+                     placeholder          = "Enter Name please"
+                     class                = "form-control"
+                     name                 = "transactName"
+                     id                   = "transactName"
+                     required>
+            </div>
+
+            <div class="form-group">
+              <label for="transactAmount">Amount*</label>
+              <input type                 = "text"
+                     [(ngModel)]          = "transactParams.amount"
+                     placeholder          = "Enter Amount please"
+                     class                = "form-control"
+                     name                 = "transactAmount"
+                     id                   = "transactAmount"
+                     required>
+            </div>
+
+
+            <button type="button" (click)="create()" class="btn btn-success">Create</button>
+          </form>
+
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+<!------------>
+
